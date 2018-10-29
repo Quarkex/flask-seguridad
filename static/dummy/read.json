@@ -1,0 +1,51 @@
+{
+    "status": "ok",
+    "data": {
+        "routes": [
+            {
+                "name": "Ruta A",
+                "id": "1"
+            },
+            {
+                "name": "Ruta B",
+                "id": "2"
+            },
+            {
+                "name": "Ruta C",
+                "id": "3"
+            },
+            {
+                "name": "Ruta D",
+                "id": "4"
+            }
+        ],
+        "route": {
+            "name": "Ruta A",
+            "id": "1"
+        },
+        "nodes": [
+            {
+                "name": "Nodo A",
+                "id": "1"
+            },
+            {
+                "name": "Nodo B",
+                "id": "2"
+            },
+            {
+                "name": "Nodo C",
+                "id": "3"
+            },
+            {
+                "name": "Nodo D",
+                "id": "4"
+            }
+        ],
+        "node": {
+            "name": "Nodo A",
+            "id": "1",
+            "route": "1",
+            "form": []
+        }
+    }
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" dir="ltr">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CRUD test app</title>
+        <link rel="stylesheet" type="text/css" href="../static/css/foundation.css">
+        <link rel="stylesheet" type="text/css" href="../static/css/app.css">
+    </head>
+    <body>
+        <div class="grid-container">
+
+
+            <div class="grid-x grid-padding-x">
+                <div class="large-12 medium-12 cell">
+                    <h5>Formulario de testeo para el metodo de API “Read”</h5>
+                    <hr />
+                    <form id="myForm" method="POST" action="/api/login">
+                        <div class="grid-x grid-padding-x">
+                            <div class="large-12 cell">
+                                <label>Usuario</label>
+                                <input type="text" name="user"/>
+                            </div>
+                            <div class="large-12 cell">
+                                <label>Contraseña</label>
+                                <input type="password" name="password"/>
+                            </div>
+                        </div>
+                        <div id="custom_form_fields" class="grid-x grid-padding-x">
+                        </div>
+                        <div class="grid-x grid-padding-x">
+                            <div class="large-12 cell">
+                                <label>Entrada de texto libre estándar</label>
+                                <textarea name="freeform_text" placeholder="small-12.cell"></textarea>
+                            </div>
+                        </div>
+                        <div class="grid-x grid-padding-x">
+                            <div class="large-12 cell">
+                                <input type="button" value="send" onclick="send();"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Load Zurb Foundation. -->
+        <script src="../static/js/vendor/jquery.js"></script>
+        <script src="../static/js/vendor/what-input.js"></script>
+        <script src="../static/js/vendor/foundation.js"></script>
+
+        <!-- Load React. -->
+        <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+        <!-- Load our React components. -->
+        <script src="../static/js/react/component.js"></script>
+
+        <!-- Load any other custom js. -->
+        <script src="../static/js/app.js"></script>
+
+        <script type="text/javascript">
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                    navigator.serviceWorker.register("../sw.js").then(function(registration) {
+                        // Registration was successful
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    }, function(err) {
+                        // registration failed :(
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+                });
+            }
+        </script>
+
+        <script>
+            console.log("loaded");
+            function send() {
+                console.log("test");
+                var formData = JSON.stringify($("#myForm").serializeArray());
+                console.log($("#myForm").serializeArray());
+                var json = {};
+                for (var i = 0; i < formData; i++){
+                    json[formData[i]["name"]] = formData[i]["value"];
+                }
+                $.ajax({
+                      type: "POST",
+                      url: "/api/login",
+                      data: json,
+                      success: function(){},
+                      dataType: "json",
+                      contentType : "application/json"
+                });
+            }
+        </script>
+    </body>
+</html>

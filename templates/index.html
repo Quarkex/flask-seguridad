@@ -78,22 +78,21 @@
         </script>
 
         <script>
-            console.log("loaded");
             function send() {
-                console.log("test");
-                var formData = JSON.stringify($("#myForm").serializeArray());
-                console.log($("#myForm").serializeArray());
+                var formData = $("#myForm").serializeArray();
                 var json = {};
-                for (var i = 0; i < formData; i++){
+                for (var i = 0; i < formData.length; i++){
                     json[formData[i]["name"]] = formData[i]["value"];
                 }
                 $.ajax({
                       type: "POST",
                       url: "/api/login",
-                      data: json,
+                      data: JSON.stringify(json),
                       success: function(){},
                       dataType: "json",
                       contentType : "application/json"
+                }).then(function(response){
+                    console.log(response);
                 });
             }
         </script>

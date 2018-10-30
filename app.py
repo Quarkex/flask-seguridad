@@ -87,18 +87,18 @@ def login():
 
     uid = common.authenticate(db, username, password, {})
 
-    if uid != None:
-        if load_user(uid) != None:
+    if uid != False:
+        if load_user(uid) != False:
             user = User(uid)
             user.username = username
             user.password = password
             users.append(user)
 
     response = {
-            "uid": uid
+            "uid": uid,
             }
 
-    response["status"] = "success" if (uid != None) else "fail"
+    response["status"] = "success" if (uid != False) else "fail"
     if response["status"] == "success":
         response["uid"] = uid
     return jsonify(response)
